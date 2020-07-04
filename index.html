@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>compras</title>
+    <meta name="description" content="compras description">
+    
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="import" href="/src/compras-app/compras-app.html">
+    <link rel="import" href="/src/compras-app/nav-app.html">
+    <link rel="import" href="/src/compras-app/my-carousel.html">
+    <link rel="import" href="/src/compras-app/card-app.html">
+    <link rel="import" href="/src/compras-app/footer-app.html">
+    <link rel="import" href="/src/compras-app/carrito-app.html">
+
+    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      #app-web{
+        background-color: #f7f9f9;
+        padding: 20px;
+      }
+
+      #dv_principal{
+        margin: auto;
+        width: 1200px;
+        display: flex;
+        flex-direction: column;
+        
+        background-color: #ffffff; 
+      }
+
+
+      #dv_nav{
+        display: flex;
+        justify-content: center;
+      }
+      
+      #dv_ofertas{
+        margin-top: 30px;
+        width: 100%;
+        height: 200px;
+        display: flex;
+     
+        background-color: #566573 ;
+      }
+
+     #dv_cards{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 10px;
+        width: 600px;
+      }
+
+      #dv_body{
+        display: flex;
+      }
+
+      my-carousel {
+        width: 90%;
+        margin:auto;
+        /* contain: content; */
+      }
+
+
+      my-carousel::after {
+        display: block;
+        content: '';
+        padding-top: 40%;
+         /* 4:3 = height is 75% of width */
+      }
+
+      my-carousel img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+  
+
+      
+
+  
+  </style>
+  </head>
+  <body>
+
+    <div id="app-web">
+
+
+
+      <div id="dv_principal">
+        <div class="dv_nav">
+          <nav-app></nav-app>
+        </div>
+        <my-carousel id="carousel-compras">
+              <img data-src="http://www.tenerifesport.es/media/import/Images/adidas%20originals%20superstar%20mujer%20comprar%20online-baratas-676ggh.jpg"></a>
+              <img data-src="https://www.deportesgonzalez.es/modules/smartblog/images/15-single-default.jpg">
+              <img data-src="https://www.zapatosmayka.es/images/landings/adidas-gazelle-unisex.jpg">
+              <img data-src="https://www.zapatosmayka.es/images/landings/adidas-gazelle-mujer.jpg">
+            
+        </my-carousel> 
+        <div id="dv_ofertas">
+          <img width="410px" src="https://mk0cazaofertassmxlbf.kinstacdn.com/wp-content/uploads/2017/11/Oferta-de-la-Semana-Innovasport-40-de-descuento-en-tenis-Nike-.jpg" alt="">
+          <img  width="410px"src="https://pbs.twimg.com/media/DgK7ZvCWkAAsyBf?format=jpg&name=small" alt="">
+          <img  width="410x" src="https://pbs.twimg.com/media/ERtxeV7X0AAat9v?format=jpg&name=small" alt="">
+        </div>
+       <div id="dv_alerta"></div>
+        <!-- <compras-app></compras-app> -->
+        <div id="dv_body">
+          
+          <div id="dv_cards">
+          
+          </div>
+          <div id="dv_card_only">
+            
+          </div>
+       
+        </div>
+
+
+        <footer-app></footer-app>
+
+
+
+
+      </div>
+      
+      
+    </div>
+
+    
+    <script>
+      
+      const carousel = document.querySelector('my-carousel');
+      setInterval(_ => carousel.next(), 3000);
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "compras",
+  "short_name": "compras",
+  "start_url": "/",
+  "display": "standalone"
+}

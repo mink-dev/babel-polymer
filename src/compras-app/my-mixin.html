@@ -1,0 +1,57 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-mixin">
+  <template>
+
+    <!-- Styles MUST be inside template -->
+    <style>
+
+      :host {
+          display: block;
+        
+        }
+     </style>
+
+  </template>
+
+  <script>
+
+    // Extend Polymer.Element base class
+    const MyMixin = superclass => class extends superclass  {
+
+        static get properties() {
+            return {
+                selected: {
+                type: Object,
+                observer: '_selectedChanged'
+                }
+            };
+        }
+        connectedCallback() {
+            super.connectedCallback();
+
+            this.shadowRoot.addEventListener('slotchange', this._resetSelected.bind(this));
+            this._resetSelected();
+        }
+
+        _selectedChanged(selected, oldSelected) {
+            if (oldSelected) oldSelected.removeAttribute('selected');
+            if (selected) selected.setAttribute('selected', '');
+        }
+
+        _resetSelected() {
+            if (!this.selected || this.selected.parentElement !== this) {
+                this.selected = this.firstElementChild;
+            }
+        }
+      
+
+    }
+
+   
+    // Register custom element definition using standard platform API
+    customElements.define(MyMixin.is, MyMixin);
+
+  </script>
+</dom-module>

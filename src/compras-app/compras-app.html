@@ -1,0 +1,152 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../compras-app/card-app.html">
+
+
+<dom-module id="compras-app">
+  <template>
+    <style>
+        :host {
+          display: block;
+        }
+
+       
+    </style>
+     <div id="dv_carousel">
+    <!-- <button id="btn-mostrar-cards" on-click="mostrarCards">route a consola</button> -->
+
+    <!-- 
+    <card-app></card-app>
+   -->
+  </template>
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ComprasApp extends Polymer.Element {
+      static get is() { return 'compras-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'compras-app'
+          }
+        };
+      }
+      
+  
+      constructor() {
+        super();
+    
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.mostrarCards();
+      }
+
+
+          metodo(){ 
+
+        // insertar
+                // var firestore = firebase.firestore();
+                // const docRef = firestore.doc("/productos/producto-4");
+                
+                //     docRef.set({
+                //       nombre: 'Nike Air Max Alpha Trainer 2',
+                //       precio: '$1,299.00 MXN',
+                //       stock: '10',
+                //       imagen: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/vu17geznxsrhuh5ifi34/calzado-de-entrenamiento-air-max-alpha-trainer-2-PRDr42.jpg',
+                //       descripcion: 'Calzado de entrenamiento para hombre',
+                //       caracteristicas:'El calzado Nike Air Max Alpha Trainer 2 está diseñado para brindar durabilidad y tracción con mucha amortiguación, diseñada para atletas que quieren ser más fuertes todos los días.'+
+
+                //               'Color que se muestra: Negro/Antracita/AntracitaEstilo: AT1237-004',
+                //       indice: true
+                //   }).then(function(){
+                //     alert('Usuario registrado correctamente');
+                    
+                //   }).catch(function(error){
+                //       alert('tenemos un errro'+ error);
+                //   });
+      //  obtener un documento y agregarlo al dom 
+              //  var firestore = firebase.firestore(); 
+              //   var docRef = firestore.collection("productos").doc("producto-1");
+
+              //   docRef.get().then(function(doc) {
+              //       if (doc.exists) {
+              //           var card_app = document.createElement('card-app');
+              //           var dv_ofertas = document.getElementById('dv_cards');
+              //           card_app.setAttribute('nombre', doc.data().nombre);
+              //           dv_ofertas.appendChild(card_app);
+              //           card_app.setAttribute('precio', doc.data().precio);
+              //           card_app.setAttribute('descripcion', doc.data().descripcion);
+              //           card_app.setAttribute('stock', doc.data().stock);
+                        
+              //       } else {
+              //           console.log("No such document!");
+              //       }
+              //   }).catch(function(error) {
+              //       console.log("Error getting document:", error);
+              //   }); 
+
+    //varios documentos
+          }
+
+          mostrarCards(){
+            var firestore = firebase.firestore(); 
+                firestore.collection("productos").where("indice", "==", true)
+                .get()
+                .then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                    
+                      var card_app = document.createElement('card-app');
+                      var dv_ofertas = document.getElementById('dv_cards');
+                      card_app.setAttribute('nombre', doc.data().nombre);
+                      dv_ofertas.appendChild(card_app);
+                      card_app.setAttribute('precio', doc.data().precio);
+                      card_app.setAttribute('descripcion', doc.data().descripcion);
+                      card_app.setAttribute('stock', doc.data().stock);
+                      card_app.setAttribute('imagen', doc.data().imagen);
+                      card_app.setAttribute('id-producto', doc.data().idProducto);
+                      card_app.setAttribute('caracteristicas', doc.data().caracteristicas);
+                      
+                      
+                      
+                      
+                      console.log(doc.id, " => ", doc.data().idProducto);
+
+                      
+                    });
+                })
+                .catch(function(error) {
+                    console.log("Error getting documents: ", error);
+                });
+          }
+
+          
+
+     
+    }
+ 
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyBPZHLdmjMhvrXgxi4nFpVPiAtwhub3ZHQ",
+      authDomain: "basepolymer-cffda.firebaseapp.com",
+      databaseURL: "https://basepolymer-cffda.firebaseio.com",
+      projectId: "basepolymer-cffda",
+      storageBucket: "basepolymer-cffda.appspot.com",
+      messagingSenderId: "1026689735275",
+      appId: "1:1026689735275:web:878cb085c8cf85df33ef2e",
+      measurementId: "G-MRW54XM2GC"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  
+   
+    
+    window.customElements.define(ComprasApp.is, ComprasApp);
+  </script>
+</dom-module>

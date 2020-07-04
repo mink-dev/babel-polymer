@@ -1,0 +1,44 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+<dom-module  id="alerta">
+  <template>
+
+    <!-- Styles MUST be inside template -->
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+    
+     </style>
+
+     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Que tal genial</strong> Has agregado al carrito tus [[nombre]]. sigue comprando estamos contentos de que siegas en la tienda
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  </template>
+
+  <script>
+
+    // Extend Polymer.Element base class
+    class Alerta extends Polymer.Element  {
+          static get is() { return 'alerta'; }
+            static get properties() {
+                return {
+                    nombre: {
+                      type: String,
+                      value: ''
+                    }
+                  
+                };
+          }
+
+        
+    }
+
+   
+    // Register custom element definition using standard platform API
+    window.customElements.define(Alerta.is, Alerta);
+  </script>
+</dom-module>

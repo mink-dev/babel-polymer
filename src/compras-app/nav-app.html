@@ -1,0 +1,136 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link href="https://fonts.googleapis.com/css?family=Lato|Oswald|Ubuntu+Condensed&display=swap" rel="stylesheet"> 
+
+
+<dom-module id="nav-app">
+  <template>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+      /* :host {
+        display: block;
+      } */
+      nav{
+          display: flex;
+          flex-direction: column;
+          margin-top: -35px;
+          font-family: 'Lato';
+      }
+      ul{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            list-style-type: none;
+            overflow: hidden;
+            background-color: #13171a;
+        }
+
+        li a > .logo-nav img {
+          margin-top: 9px;
+            width: 80px;
+            height: 100%;
+            /* filter: invert(90%); */
+        }
+
+        #li_links{
+          display: flex;
+          /* align-items: center; */
+
+        }
+       li > .a_footer {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li > .a_footer:hover {
+            color: lavender;
+            background-color: #333;
+            list-style-type: none;
+            overflow: hidden;
+            text-decoration: none;
+            
+        }
+    </style>
+    <nav>
+        <ul>
+            <div id="li_img">
+              <li>
+                <a href="/compras/">
+                  <div class="logo-nav">
+                    <img src="https://cloud.melijoe.com/p/f58b2842_1549938601_z_adidas-originals_252960_B.jpg" alt="Logo">
+                  </div>
+                </a>
+              </li>
+            </div>
+            <div id="dv_search">
+              <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+              </form>
+            </div>
+            <div id="li_links">
+              <li><a class="a_footer" href="/compras/">Home</a></li>
+              <li><a class="a_footer" href="#news" on-click="ocultarElementos">Quienes somos</a></li>
+              <li><a class="a_footer" href="#contact">Contactanos</a></li>
+              <li><a class="active a_footer" href="#about">About</a></li>
+              <li><a class="a_footer" href="/compras-app/">Compras</a></li>
+            </div>
+        </ul>
+        
+    </nav>
+   
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{data}}"
+        tail="{{tail}}">
+    </app-route>
+
+    <iron-pages selected="[[data.page]]" attr-for-selected="page">
+        <compras-app page="compras-app"></compras-app>
+        <div page="compras"></div>
+        
+    </iron-pages>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class NavApp extends Polymer.Element {
+          static get is() { return 'nav-app'; }
+          static get properties() {
+            return {
+              prop1: {
+                type: String,
+                value: 'nav-app'
+              }
+            };
+          }
+
+          ocultarElementos(){
+            document.getElementById('carousel-compras').style.display='none';
+    
+          }
+    
+    }
+ 
+
+        // e.preventDefault();
+        // document.getElementById('carousel-compras').style.display = 'none';
+
+   
+    
+    window.customElements.define(NavApp.is, NavApp);
+  </script>
+</dom-module>
